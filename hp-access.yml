@@ -1,0 +1,19 @@
+all:
+  children:
+    msh-mt:
+      hosts:
+        sw-test1:
+          ansible_host: 192.168.25.22
+        sw-test2:
+          ansible_host: 192.168.25.23
+      vars:
+        ansible_network_os: aruba
+        ansible_connection: network_cli
+        ansible_become: yes
+        ansible_become_method: enable
+        ansible_user: "{{ credentials[inventory_hostname]['user'] }}"
+        ansible_password: "{{ credentials[inventory_hostname]['pass'] }}"
+        ansible_become_password: "{{ credentials[inventory_hostname]['enable'] }}"
+        ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
+        backup_dir: "/root/backupOfDevicesConfigs/hpSwitches/{{ ansible_date_time.date }}_{{ ansible_date_time.hour }}"
+    

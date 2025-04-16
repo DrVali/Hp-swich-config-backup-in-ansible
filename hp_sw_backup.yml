@@ -1,0 +1,24 @@
+---
+- name: Check HP Aruba 2930F switch version
+  hosts: all
+  gather_facts: yes
+
+  vars_files:
+    - vault.yml
+
+  tasks:
+    - name: Ensure the backup directory exists
+      file:
+        path: "{{ backup_dir }}"
+        state: directory
+        mode: '0755'
+
+    - name: SSH to the switch and retrieve version
+      community.network.aruba_command:
+        commands: show run
+      register: show_run
+
+    - name: Save switch configuration to a dated file
+      copy:
+        content: "{{ show_run.stdout | join('\n') }}"
+        dest: "{{ backup_dir }}/{{ inventory_hostname }}_{{ ansible_host }}_hp.txt"

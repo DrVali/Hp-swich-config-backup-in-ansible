@@ -1,0 +1,9 @@
+credentials:
+  sw-test1:
+    user: swa
+    pass: cisco1
+    enable: cisco1
+  sw-test2:
+    user: swa
+    pass: cisco2
+    enable: cisco2
