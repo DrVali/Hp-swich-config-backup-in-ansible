@@ -1,9 +1,9 @@
 credentials:
   sw-test1:
-    user: swa
+    user: switchpss
     pass: cisco1
     enable: cisco1
   sw-test2:
-    user: swa
+    user: switchpss
     pass: cisco2
     enable: cisco2
